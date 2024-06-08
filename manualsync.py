@@ -72,7 +72,7 @@ def update_html_file(news_html):
 def push_to_github():
     repo = Repo(LOCAL_REPO_PATH)
     repo.git.add(FILE_PATH)
-    repo.index.commit('AUTOMATED: Updated news.html')
+    repo.index.commit('automated:: update news.html')
     origin = repo.remote(name='origin')
     origin.push()
 
