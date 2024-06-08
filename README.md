@@ -1,3 +1,9 @@
+**MAKE SURE YOUR LOCAL FILES ARE IN SYNC WITH MAIN!!!**
+```git
+git pull origin main
+```
+
+
 ### autosync 
 Automatically pulls annoucements from TeamUnify and syncs it.
 
