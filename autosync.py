@@ -1,3 +1,5 @@
+# Does not work currently, just removes pre-existing news made by manualsync.py
+
 import os
 import requests
 import feedparser
@@ -67,7 +69,7 @@ def update_html_file(news_html):
 def push_to_github():
     repo = Repo(LOCAL_REPO_PATH)
     repo.git.add(FILE_PATH)
-    repo.index.commit('Auto-updated news page')
+    repo.index.commit('automated:: update news.html')
     origin = repo.remote(name='origin')
     origin.push()
 
