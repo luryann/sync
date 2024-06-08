@@ -4,7 +4,7 @@ from git import Repo
 
 # Constants
 FILE_PATH = 'C:/Users/Ryan/Downloads/dare-website/news.html'
-LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website' # git clone https://github.com/dareaquatics/dare-website.git
+LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website'
 
 # Function to input news items
 def input_news_items():
@@ -16,12 +16,12 @@ def input_news_items():
             break
 
         while True:
-            date = input("Enter the date of the news item (YYYY-MM-DD): ")
+            date = input("Enter the date of the news item (MM-DD-YYYY): ")
             try:
-                datetime.strptime(date, '%Y-%m-%d')
+                datetime.strptime(date, '%m-%d-%Y')
                 break
             except ValueError:
-                print("Invalid date format. Please enter the date in YYYY-MM-DD format.")
+                print("Invalid date format. Please enter the date in MM-DD-YYYY format.")
 
         content = input("Enter the content of the news item: ")
 
@@ -38,7 +38,7 @@ def generate_html(news_items):
     news_html = ''
 
     for item in news_items:
-        formatted_date = datetime.strptime(item['date'], '%Y-%m-%d').strftime('%B %d, %Y')
+        formatted_date = datetime.strptime(item['date'], '%m-%d-%Y').strftime('%B %d, %Y')
 
         news_html += f'''
         <div class="news-item">
