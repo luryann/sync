@@ -13,7 +13,7 @@ Automatically pulls annoucements from TeamUnify and syncs it.
 1. Install Required Libraries:
    - ```pip install requests feedparser gitpython```
 2. Set Up GitHub Personal Access Token:
-   - Follow the GitHub documentation to create a Personal Access Token with repo permissions.
+   - Follow the GitHub documentation to create a Personal Access Token (classic) with repo permissions.
   
 **Configuration**
 - Replace placeholders like `your_username/your_repo`, `path/to/your/announcements.html`, `https://example.com/rss`, `your_github_token`, and `/path/to/local/repo` with your actual values.
