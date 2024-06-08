@@ -39,3 +39,10 @@ To keep the news up-to-date automatically, you can set up a cron job or task sch
 # Example crontab entry to run the script every day at midnight
 0 0 * * * /usr/bin/python3 /path/to/update_news.py
 ```
+
+
+### manualsync
+Allows a user to manually update the website, using provided Python file.
+
+**Setup:**
+Run the file and fill in prompts. Make sure the date is formatted properly.
