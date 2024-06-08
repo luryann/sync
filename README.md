@@ -26,7 +26,7 @@ Automatically pulls annoucements from TeamUnify and syncs it.
 - The `RSS_FEED_URL` should point to the RSS feed you want to fetch news from. You may replace this with an API endpoint or other data source if needed.
 
 **Explanation of Key Parts**
-- **Fetching News**: Uses the `feedparser` library to read from an RSS feed and extract the latest news items.
+- **Gets news**: Uses the `feedparser` library to read from an RSS feed and extract the latest news items.
 - **Generating HTML**: Converts news items into HTML snippets that match the current page format.
 - **Updating HTML File**: Reads the current HTML content, finds the section between the markers, and replaces it with the new news content.
 - **Pushing to GitHub**: Uses `GitPython` to automate adding the updated file, committing the change, and pushing it to the repository.
