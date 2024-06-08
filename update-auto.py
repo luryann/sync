@@ -5,11 +5,11 @@ from datetime import datetime
 from git import Repo
 
 # Constants
-GITHUB_REPO = 'dareaquatics/dare-website
-FILE_PATH = 'news.html'
+GITHUB_REPO = 'dareaquatics/dare-website'
+FILE_PATH = 'C:/Users/Ryan/Downloads/dare-website/news.html'
 RSS_FEED_URL = 'https://www.gomotionapp.com/team/cadas/page/news'
-GITHUB_TOKEN = 'your_github_token' #REDACTED
-LOCAL_REPO_PATH = 'C:\Users\Ryan\Downloads\dare-website-main'
+GITHUB_TOKEN = 'REDACTED' 
+LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website'
 
 # Fetch the latest news from an RSS feed
 def fetch_news():
@@ -47,7 +47,7 @@ def generate_html(news_items):
 
 # Update the HTML file with new news items
 def update_html_file(news_html):
-    with open(FILE_PATH, 'r') as file:
+    with open(FILE_PATH, 'r', encoding='utf-8') as file:
         content = file.read()
 
     # Define markers for the section to be replaced
@@ -59,8 +59,9 @@ def update_html_file(news_html):
     # Update the content between markers
     updated_content = content[:start_index] + '\n' + news_html + '\n' + content[end_index:]
 
-    with open(FILE_PATH, 'w') as file:
+    with open(FILE_PATH, 'w', encoding='utf-8') as file:
         file.write(updated_content)
+
 
 # Commit and push the changes to GitHub
 def push_to_github():
