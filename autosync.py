@@ -1,5 +1,4 @@
 # This version is meant to run locally. A version built for GitHub Actions is available in the repo dareaquatics/dare-website.
-
 import os
 import cloudscraper
 from bs4 import BeautifulSoup
