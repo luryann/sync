@@ -51,7 +51,7 @@ def fetch_news():
         for article in articles:
             if 'Supplement' in article.get('class', []):
                 logging.debug("Skipping Supplement item")
-                continue  # Skip items with class 'Item Supplement'
+                continue  # Skip articles with class 'Item Supplement'
 
             try:
                 logging.debug(f"Processing article: {article.prettify()[:500]}")  # Log first 500 characters of each article for inspection
@@ -78,9 +78,9 @@ def fetch_news():
             except Exception as e:
                 logging.error(f"Error parsing article: {e}")
 
-        # Sort news_items by date in ascending order
+        # Sort news_items by date in descending order
         news_items.sort(
-            key=lambda x: datetime.strptime(x['date'], '%B %d, %Y') if x['date'] != 'Unknown Date' else datetime.min)
+        key=lambda x: datetime.strptime(x['date'], '%B %d, %Y') if x['date'] != 'Unknown Date' else datetime.min, reverse=True)
 
         logging.info("Successfully fetched and parsed news items.")
         return news_items
@@ -150,7 +150,7 @@ def push_to_github():
         logging.info("Pushing changes to GitHub...")
         repo = Repo(LOCAL_REPO_PATH)
         repo.git.add(FILE_PATH)
-        repo.index.commit('automated:: update news.html')
+        repo.index.commit('Automation: Sync TeamUnify Events w/ GitHub')
         origin = repo.remote(name='origin')
         origin.push()
         logging.info("Successfully pushed changes to GitHub.")
