@@ -1,56 +1,36 @@
-**MAKE SURE YOUR LOCAL FILES ARE IN SYNC WITH MAIN!!!**
-```git
-git pull origin main
+### autosync.py
+High-level Python script designed to sync announcements/news from Website A ([TeamUnify](https://www.gomotionapp.com/team/cadas/page/news)) to Website B ([x](https://dareaquatics.com/news)). Designed with cron and the "set and forget" mindset in hand.
+
+#### Notes:
+- Make sure your local files are up to date.
+
+        git pull origin main
+
+**Dependencies**
+```python
+pip install requests beautifulsoup4 gitpython cloudscraper colorlog
 ```
 
+**Overview**
 
-### autosync 
-Automatically pulls annoucements from TeamUnify and syncs it.
+Please note that this is a basic rundown.
 
+1. User runs script
+2. Script connects to [TeamUnify](https://www.gomotionapp.com/team/cadas/page/news) and parses all user data under div class `Item`
+3. Script parses all other information required, such as date (and converts it from Unix time to readable data)
+4. Script updates news.html on local machine, then pushes changes to upstream Git repository
+5. DARE website is officially updated.
 
-**How it works:**
-1. Fetch News: Retrieve the latest news items from a specified source.
-2. Generate HTML: Create HTML snippets for each news item that match the existing format.
-3. Update HTML File: Locate the section in the HTML file where news items are to be inserted and update it.
-4. Commit and Push to GitHub: Automatically push the changes to the GitHub repository.
-
-
-**Step-by-Step Implementation**
-1. Install Required Libraries:
-   - ```pip install requests feedparser gitpython```
-2. Set Up GitHub Personal Access Token:
-   - Follow the GitHub documentation to create a Personal Access Token (classic) with repo permissions.
-  
-**Configuration**
-- Replace placeholders like `your_username/your_repo`, `path/to/your/announcements.html`, `https://example.com/rss`, `your_github_token`, and `/path/to/local/repo` with your actual values.
-- The `RSS_FEED_URL` should point to the RSS feed you want to fetch news from. You may replace this with an API endpoint or other data source if needed.
-
-**Explanation of Key Parts**
-- **Gets news**: Uses the `feedparser` library to read from an RSS feed and extract the latest news items.
-- **Generating HTML**: Converts news items into HTML snippets that match the current page format.
-- **Updating HTML File**: Reads the current HTML content, finds the section between the markers, and replaces it with the new news content.
-- **Pushing to GitHub**: Uses `GitPython` to automate adding the updated file, committing the change, and pushing it to the repository.
-
-**Running the Script**
-1. Run the script in your terminal:
-```bash
-python update_news.py
+**Constants**
+```python
+GITHUB_REPO = 'https://github.com/dareaquatics/dare-website.git'          ---> Your GitHub repo; make sure to include .git duh
+FILE_PATH = 'C:/Users/Ryan/Downloads/dare-website/news.html'              ---> Local path to the file you want to edit (News.html) for us
+NEWS_URL = 'https://www.gomotionapp.com/team/cadas/page/news'             ---> Website that we want to clone
+GITHUB_TOKEN = 'REDACTED'                                                 ---> GitHub Classic Personal Access token. Must have repo access.
+LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website'                  ---> Location to local files on your PC. Must do `git clone https://github.com/dareaquatics/dare-website.git`
 ```
 
-**Automating the Script**
+---
 
-To keep the news up-to-date automatically, you can set up a cron job or task scheduler:
-
-```bash
-# Example crontab entry to run the script every day at midnight
-0 0 * * * /usr/bin/python3 /path/to/update_news.py
-```
-
-------
-
-### manualsync
-Allows a user to manually update the website, using provided Python file.
-
-**Setup:**
-
-Run the file and fill in prompts. Make sure the date is formatted properly.
+### manualsync.py
+Similar tool to autosync.py. However, this tool allows the user to manually add announcement entires to the website, allowing more flexibility. Uses almost the same dependencies as autosync.py
