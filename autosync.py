@@ -1,3 +1,5 @@
+# This version is meant to run locally. A version built for GitHub Actions is available in the repo dareaquatics/dare-website.
+
 import os
 import cloudscraper
 from bs4 import BeautifulSoup
@@ -49,7 +51,7 @@ def fetch_news():
         for article in articles:
             if 'Supplement' in article.get('class', []):
                 logging.debug("Skipping Supplement item")
-                continue  # Skip articles with class 'Item Supplement'
+                continue  # Skip items with class 'Item Supplement'
 
             try:
                 logging.debug(f"Processing article: {article.prettify()[:500]}")  # Log first 500 characters of each article for inspection
