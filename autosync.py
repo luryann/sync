@@ -5,6 +5,7 @@ from datetime import datetime
 from git import Repo
 import logging
 import colorlog
+import re
 
 # Constants
 GITHUB_REPO = 'https://github.com/dareaquatics/dare-website.git'
@@ -51,12 +52,13 @@ def fetch_news():
                 continue  # Skip articles with class 'Item Supplement'
 
             try:
-                logging.debug(
-                    f"Processing article: {article.prettify()[:500]}")  # Log first 500 characters of each article for inspection
+                logging.debug(f"Processing article: {article.prettify()[:500]}")  # Log first 500 characters of each article for inspection
                 title = article.find('h4').text.strip() if article.find('h4') else 'No Title'
                 date_element = article.find('span', class_='DateStr')
                 date_str = date_element.get('data') if date_element else None
                 summary = article.find('p').text.strip() if article.find('p') else 'No Summary'
+                author_element = article.find('span', class_='Author')
+                author = author_element.text.strip() if author_element else 'Unknown Author'
 
                 if date_str:
                     date_obj = datetime.utcfromtimestamp(int(date_str) / 1000)  # Convert from milliseconds to seconds
@@ -68,7 +70,8 @@ def fetch_news():
                 news_items.append({
                     'title': title,
                     'date': formatted_date,
-                    'summary': summary
+                    'summary': summary,
+                    'author': author
                 })
             except Exception as e:
                 logging.error(f"Error parsing article: {e}")
@@ -85,17 +88,25 @@ def fetch_news():
         return []
 
 
+# Convert URLs in text to clickable links
+def convert_links_to_clickable(text):
+    url_pattern = re.compile(r'(https?://\S+)')
+    return url_pattern.sub(r'<a href="\1">\1</a>', text)
+
+
 # Generate HTML for news items
 def generate_html(news_items):
     logging.info("Generating HTML for news items...")
     news_html = ''
 
     for item in news_items:
+        summary_with_links = convert_links_to_clickable(item["summary"])
         news_html += f'''
         <div class="news-item">
-            <h2 class="news-title">{item["title"]}</h2>
+            <h2 class="news-title"><strong>{item["title"]}</strong></h2>
+            <p class="news-date">Author: {item["author"]}</p>
             <p class="news-date">Published on {item["date"]}</p>
-            <p class="news-content">{item["summary"]}</p>
+            <p class="news-content">{summary_with_links}</p>
         </div>
         '''
 
