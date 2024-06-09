@@ -9,10 +9,11 @@ import re
 
 # Constants
 GITHUB_REPO = 'https://github.com/dareaquatics/dare-website.git'
-FILE_PATH = 'C:/Users/Ryan/Downloads/dare-website/news.html'
+FILE_PATH = 'news.html' # Change to C:/Users/Ryan/Downloads/dare-website/news.html or whatever if running locally
 NEWS_URL = 'https://www.gomotionapp.com/team/cadas/page/news'
-GITHUB_TOKEN = 'REDACTED'
-LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website'
+GITHUB_TOKEN = '${{ secrets.GIT_PAT }}' # Change to uncensored token if running locally
+# Uncomment if running locally
+# LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website'
 
 # Setup colored logging
 handler = colorlog.StreamHandler()
