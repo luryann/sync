@@ -15,7 +15,7 @@ from tqdm import tqdm
 # Constants
 GITHUB_REPO = 'https://github.com/dareaquatics/dare-website'
 NEWS_URL = 'https://www.gomotionapp.com/team/cadas/page/news'
-GITHUB_TOKEN = ' ' #REDACTED
+GITHUB_TOKEN = 'REDACTED'
 REPO_NAME = 'dare-website'
 NEWS_HTML_FILE = 'news.html'
 
