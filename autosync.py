@@ -1,4 +1,6 @@
 # This version is meant to run locally. A version built for GitHub Actions is available in the repo dareaquatics/dare-website.
+# This version of the file is deprecated, do not use
+
 import os
 import shutil
 import platform
@@ -13,11 +15,11 @@ import requests
 from tqdm import tqdm
 
 # Constants
-GITHUB_REPO = 'https://github.com/dareaquatics/dare-website'
-NEWS_URL = 'https://www.gomotionapp.com/team/cadas/page/news'
-GITHUB_TOKEN = 'REDACTED'
-REPO_NAME = 'dare-website'
-NEWS_HTML_FILE = 'news.html'
+GITHUB_REPO = ' '
+NEWS_URL = ' '
+GITHUB_TOKEN = ' '
+REPO_NAME = ' '
+NEWS_HTML_FILE = ' '
 
 # Setup colored logging
 handler = colorlog.StreamHandler()
@@ -49,15 +51,16 @@ def download_portable_git():
     git_filename = None
     git_url = None
 
+    # Update URL and file names
     if os_name == 'windows':
-        git_url = 'https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/PortableGit-2.45.1-64-bit.7z.exe'
-        git_filename = 'PortableGit-2.45.1-64-bit.7z.exe'
+        git_url = ' '
+        git_filename = ' '
     elif os_name == 'linux':
-        git_url = 'https://github.com/git/git/archive/refs/tags/v2.40.0.tar.gz'
-        git_filename = 'git-2.40.0.tar.gz'
+        git_url = ' '
+        git_filename = ' '
     elif os_name == 'darwin':
-        git_url = 'https://sourceforge.net/projects/git-osx-installer/files/git-2.40.0-intel-universal-mavericks.dmg/download'
-        git_filename = 'git-2.40.0-intel-universal-mavericks.dmg'
+        git_url = ' '
+        git_filename = ' '
     else:
         logging.error(f"Unsupported OS: {os_name}")
         return False
