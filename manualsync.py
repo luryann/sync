@@ -3,8 +3,8 @@ from datetime import datetime
 from git import Repo
 
 # Constants
-FILE_PATH = 'C:/Users/Ryan/Downloads/dare-website/news.html'
-LOCAL_REPO_PATH = 'C:/Users/Ryan/Downloads/dare-website'
+FILE_PATH = 'C:/file.html'      # Path to the HTML file
+LOCAL_REPO_PATH = 'C:/'         # Repo path  
 
 # Function to input news items
 def input_news_items():
@@ -40,6 +40,7 @@ def generate_html(news_items):
     for item in news_items:
         formatted_date = datetime.strptime(item['date'], '%m-%d-%Y').strftime('%B %d, %Y')
 
+        # Format
         news_html += f'''
         <div class="news-item">
             <h2 class="news-title">{item["title"]}</h2>
